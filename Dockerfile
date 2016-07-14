@@ -33,10 +33,14 @@ http://dl-6.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     py-pip && \
     pip install docker-compose
 
+
 # LetsBonus behaviour dependencies
 RUN apk add --no-cache \
     git \
     rsync
+
+# ಠ_ಥ
+VOLUME ["/var/run/docker.sock"]
 
 # Standard SSH port
 EXPOSE 22
