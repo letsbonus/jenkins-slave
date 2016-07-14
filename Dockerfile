@@ -5,7 +5,11 @@ MAINTAINER Ferran Vidal <ferran.vidal@letsbonus.com>
 # Add SSH package & mixed hacks
 RUN apk add --no-cache \
     openssh && \
-    ssh-keygen -A
+    ssh-keygen -A && \
+    sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config && \
+    sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config && \
+    sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config && \
+    sed -i "s/#AuthorizedKeysFile/AuthorizedKeysFile/g" /etc/ssh/sshd_config
 
 # Docker plugin dependencies
 RUN apk add --no-cache \
@@ -14,7 +18,7 @@ RUN apk add --no-cache \
     bash-completion
 
 # Set user jenkins to the image
-RUN adduser -h /home/jenkins -s $(which bash) -D jenkins &&\
+RUN adduser -h /home/jenkins -D jenkins &&\
     echo "jenkins:jenkins" | chpasswd
 
 # Docker stuff
