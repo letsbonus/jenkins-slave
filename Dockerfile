@@ -39,9 +39,6 @@ RUN apk add --no-cache \
     git \
     rsync
 
-# ಠ_ಥ
-VOLUME ["/var/run/docker.sock"]
-
 # Standard SSH port
 EXPOSE 22
 
