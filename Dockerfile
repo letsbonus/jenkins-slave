@@ -1,9 +1,13 @@
 FROM alpine:3.4
 
-MAINTAINER Ferran Vidal "ferran.vidal@letsbonus.com"
+MAINTAINER Ferran Vidal <ferran.vidal@letsbonus.com>
 
 RUN echo " \
 http://dl-6.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+
+# Set user jenkins to the image
+RUN adduser -h /home/jenkins -s $(which sh) -D jenkins &&\
+    echo "jenkins:jenkins" | chpasswd
 
 RUN apk add --no-cache \
     git \
@@ -12,3 +16,9 @@ RUN apk add --no-cache \
     py-pip
 
 RUN pip install docker-compose
+
+# Standard SSH port
+EXPOSE 22
+
+# Default command
+CMD ["/usr/sbin/sshd", "-D"]
