@@ -17,6 +17,10 @@ RUN apk add --no-cache \
     bash-doc \
     bash-completion
 
+# Add JDK support
+RUN apk add --no-cache \
+    openjdk7-jre
+
 # Set user jenkins to the image
 RUN adduser -h /home/jenkins -D jenkins &&\
     echo "jenkins:jenkins" | chpasswd
