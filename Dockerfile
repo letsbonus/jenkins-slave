@@ -5,8 +5,13 @@ MAINTAINER Ferran Vidal <ferran.vidal@letsbonus.com>
 RUN echo " \
 http://dl-6.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
 
+RUN apk add --no-cache \
+    bash \
+    bash-doc \
+    bash-completion
+
 # Set user jenkins to the image
-RUN adduser -h /home/jenkins -s $(which sh) -D jenkins &&\
+RUN adduser -h /home/jenkins -s $(which bash) -D jenkins &&\
     echo "jenkins:jenkins" | chpasswd
 
 RUN apk add --no-cache \
