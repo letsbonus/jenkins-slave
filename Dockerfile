@@ -37,7 +37,8 @@ http://dl-6.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
 # LetsBonus behaviour dependencies
 RUN apk add --no-cache \
     git \
-    rsync
+    rsync \
+    curl
 
 # Standard SSH port
 EXPOSE 22
