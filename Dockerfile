@@ -25,21 +25,6 @@ RUN apk add --no-cache \
 RUN adduser -h /home/jenkins -D jenkins &&\
     echo "jenkins:jenkins" | chpasswd
 
-# Docker stuff
-RUN echo " \
-http://dl-6.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
-    apk add --no-cache \
-    docker \
-    py-pip && \
-    pip install docker-compose
-
-
-# LetsBonus behaviour dependencies
-RUN apk add --no-cache \
-    git \
-    rsync \
-    curl
-
 # Standard SSH port
 EXPOSE 22
 
