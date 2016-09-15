@@ -2,7 +2,7 @@ FROM letsbonus/jenkins-slave:latest
 
 # Docker stuff
 RUN echo " \
-http://dl-6.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
+http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     apk add --no-cache \
     docker \
     py-pip && \
